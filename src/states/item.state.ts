@@ -14,7 +14,7 @@ export const itemsAtom = atom<Item[]>(
   }))
 );
 
-export const selectItemsAtom = atom<Item[]>((get) => {
+export const selectedItemsAtom = atom<Item[]>((get) => {
   const items = get(itemsAtom);
   return items.filter((item) => item.isSelected);
 });

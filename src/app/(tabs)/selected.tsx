@@ -1,11 +1,11 @@
 import { List } from "@/src/components";
 import { useToggleItem } from "@/src/hooks";
-import { Item, selectItemsAtom } from "@/src/states";
+import { Item, selectedItemsAtom } from "@/src/states";
 import { useAtomValue } from "jotai";
 import { StyleSheet, View } from "react-native";
 
 export default function Page() {
-  const selectedItems = useAtomValue<Item[]>(selectItemsAtom);
+  const selectedItems = useAtomValue<Item[]>(selectedItemsAtom);
   const { toggleItem } = useToggleItem();
 
   return (
