@@ -1,26 +1,13 @@
 import { StyleSheet, View } from "react-native";
 
 import { List } from "@/src/components";
+import { useToggleItem } from "@/src/hooks";
 import { Item, itemsAtom } from "@/src/states";
-import { useAtom } from "jotai";
-import { useCallback } from "react";
+import { useAtomValue } from "jotai";
 
 export default function Page() {
-  const [items, setItems] = useAtom<Item[]>(itemsAtom);
-
-  const handleSelectItem = useCallback((item: Item) => {
-    setItems((prevItems) =>
-      prevItems.map((prevItem) => {
-        if (prevItem.id === item.id) {
-          return {
-            ...prevItem,
-            isSelected: !prevItem.isSelected,
-          };
-        }
-        return prevItem;
-      })
-    );
-  }, []);
+  const items = useAtomValue<Item[]>(itemsAtom);
+  const { toggleItem } = useToggleItem();
 
   return (
     <View
@@ -31,7 +18,7 @@ export default function Page() {
         },
       ]}
     >
-      <List items={items} handleSelectItem={handleSelectItem} />
+      <List items={items} handleSelectItem={toggleItem} />
     </View>
   );
 }
